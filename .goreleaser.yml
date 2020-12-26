@@ -1,0 +1,17 @@
+project_name: afxw-his
+builds:
+  - main: main.go
+    binary: afxw-his
+    goos:
+      - windows
+    goarch:
+      - amd64
+    env:
+      - CGO_ENABLE=0
+archives:
+  - name_template: '{{ .ProjectName }}'
+    format: zip
+checksum:
+  name_template: 'checksum.txt'
+release:
+  prerelease: auto

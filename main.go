@@ -29,6 +29,7 @@ func histories() ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer unknown.Release()
 	afxw, err := unknown.QueryInterface(ole.IID_IDispatch)
 	if err != nil {
 		return nil, err
@@ -55,6 +56,7 @@ func excd(path string) error {
 	if err != nil {
 		return err
 	}
+	defer unknown.Release()
 
 	afxw, err := unknown.QueryInterface(ole.IID_IDispatch)
 	if err != nil {

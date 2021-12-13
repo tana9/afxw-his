@@ -29,10 +29,12 @@ func histories() ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer unknown.Release()
 	afxw, err := unknown.QueryInterface(ole.IID_IDispatch)
 	if err != nil {
 		return nil, err
 	}
+	defer afxw.Release()
 
 	var dirs []string
 
@@ -55,11 +57,13 @@ func excd(path string) error {
 	if err != nil {
 		return err
 	}
+	defer unknown.Release()
 
 	afxw, err := unknown.QueryInterface(ole.IID_IDispatch)
 	if err != nil {
 		return err
 	}
+	defer afxw.Release()
 
 	oleutil.MustCallMethod(afxw, "Exec", fmt.Sprintf("&EXCD -P%s", path))
 	return nil
